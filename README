@@ -1,0 +1,36 @@
+Explores a few ways to generate primes using Rust. Output looks like this:
+
+Using a lazy generation approach with a HashMap:
+This approach generates prime numbers indefinitely in a lazy manner, i.e., on-demand. It utilizes a HashMap to keep track of the composites and their prime factors, ensuring only the necessary calculations are done. This method is suitable when you need primes on-the-fly without a known upper limit or want to generate primes in real-time scenarios without precomputing a list.
+Primes up to 100 using gen_primes: [2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59, 61, 67, 71, 73, 79, 83, 89, 97]
+Time taken using gen_primes: 278.209µs
+
+
+Using the Trial Division approach:
+Trial Division is a straightforward method that checks the divisibility of a number by primes less than its square root. While simple, it's generally slower than the Sieve of Eratosthenes, especially for larger ranges. However, it's useful when determining the primality of individual numbers without the need for a precomputed list of primes.
+Primes up to 100 using gen_primes_upto_trial_division: [2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59, 61, 67, 71, 73, 79, 83, 89, 97]
+Time taken using gen_primes_upto_trial_division: 43.808µs
+
+
+Using the Segmented Sieve approach:
+The Segmented Sieve is a space-optimized version of the Sieve of Eratosthenes. It divides the number range into smaller segments and computes primes in each segment separately, which allows it to generate primes in a range without using memory proportional to the size of the range. This is particularly useful when generating primes in a large range where memory usage is a concern.
+Primes up to 100 using gen_primes_upto_segmented: [2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59, 61, 67, 71, 73, 79, 83, 89, 97]
+Time taken using gen_primes_upto_segmented: 40.935µs
+
+
+Using the Wheel Factorization approach:
+Wheel Factorization optimizes the Sieve of Eratosthenes by skipping over the multiples of the first few primes (e.g., 2, 3, 5). This reduces the number of operations, especially for large numbers, but its effectiveness diminishes as the range grows.
+Primes up to 100 using gen_primes_upto_wheel: [2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59, 61, 67, 71, 73, 79, 83, 89, 97]
+Time taken using gen_primes_upto_wheel: 19.734µs
+
+
+Using the basic Sieve of Eratosthenes approach:
+The Sieve of Eratosthenes is one of the most efficient ways to find all primes smaller than a given number, up to 10 million or so. It works by iteratively marking the multiples of each prime number starting from 2. This method is straightforward and effective for generating a list of primes up to a specified limit.
+Primes up to 100 using gen_primes_upto: [2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 49, 53, 59, 61, 67, 71, 73, 77, 79, 83, 89, 91, 97]
+Time taken using gen_primes_upto: 14.212µs
+
+
+Using the Sieve of Sundaram approach:
+The Sieve of Sundaram is a variant of the Sieve of Eratosthenes. It works by eliminating numbers that can be written in a certain form, reducing the set of numbers to check. The remaining numbers are then transformed to produce a list of primes. This method is simpler in construction than the Sieve of Eratosthenes but can be less efficient for larger ranges.
+Primes up to 100 using gen_primes_upto_sundaram: [2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59, 61, 67, 71, 73, 79, 83, 89, 97]
+Time taken using gen_primes_upto_sundaram: 10.184µs
